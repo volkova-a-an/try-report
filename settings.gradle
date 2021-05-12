@@ -1,0 +1,6 @@
+rootProject.name = 'try-report'
+include 'repor-portal'
+include 'report-portal'
+include 'extent-reports'
+include 'test-project-io'
+

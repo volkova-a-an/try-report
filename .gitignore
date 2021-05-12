@@ -1,0 +1,5 @@
+# Project exclude paths
+/.gradle/
+/build/
+/extent-reports/build/
+/extent-reports/build/classes/java/test/
