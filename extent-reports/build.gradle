@@ -11,22 +11,19 @@ repositories {
 
 dependencies {
 
-implementation 'com.aventstack:extentreports-testng-adapter:1.2.2'
+    implementation 'com.aventstack:extentreports-testng-adapter:1.2.2'
     implementation 'com.aventstack:extentreports:5.0.5'
-    // https://mvnrepository.com/artifact/org.testng/testng
-   implementation group: 'org.testng', name: 'testng', version: '7.4.0'
-    //6.14.3
-    
+    implementation 'org.testng:testng:7.4.0'
+
     implementation 'io.github.bonigarcia:webdrivermanager:4.4.1'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'com.codeborne:selenide:5.20.4'
 
 
-
 }
 
 test {
-   useTestNG()
+    useTestNG()
     testLogging.showStandardStreams = true
 
 }

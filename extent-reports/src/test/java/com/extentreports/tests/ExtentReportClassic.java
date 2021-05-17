@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.ExtentSparkReporterConfig;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -17,8 +18,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 // https://www.extentreports.com/docs/versions/5/java/spark-reporter.html
+// https://www.extentreports.com/docs/versions/4/java/testng.html
 
-public class ExtentReport {
+public class ExtentReportClassic {
     ExtentReports extent = new ExtentReports();
 
     @BeforeTest
@@ -27,6 +29,7 @@ public class ExtentReport {
         ExtentSparkReporter spark = new ExtentSparkReporter("build/spark/spark.html"); // a place to put the generated html file
         extent.attachReporter(spark);
 
+        // the report visual configuration
         spark.config(
                 ExtentSparkReporterConfig.builder()
                         .theme(Theme.DARK)
@@ -46,18 +49,22 @@ public class ExtentReport {
     @Test
     public void extentTest() {
 
-        try {
+       // try {
+            // create first test
             ExtentTest firstTest = extent.createTest("Open Feedback box")
+
+            // assign labels
                     .assignAuthor("Nastja")
                     .assignCategory("Smoke")
                     .assignDevice("Chrome90"); // create a test node in the report
-
+            // logger
             firstTest.info("Opened " + WebDriverRunner.url());
+
             $("span.open").click();
             firstTest.info("Clicked Open Feedback Dialogue");
             $("div.feedback-box").shouldHave(Condition.text("Feedback appreciated"));
 
-
+       /*     // create second test
             ExtentTest secondTest = extent.createTest("Open Feedback box Regression")
                     .assignAuthor("NotNastja")
                     .assignCategory("Regression")
@@ -72,14 +79,13 @@ public class ExtentReport {
             $("span.open").click();
             doomedToFail.info("Clicked Open Feedback Dialogue");
             $("div.feedback-box").shouldHave(Condition.text("Geben Sie uns Feedback!"));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
-        }
+        }*/
 
     }
 
-    @AfterMethod
+   /* @AfterMethod
     public synchronized void afterMethod(ITestResult result, ExtentTest test) {
         if (result.getStatus() == ITestResult.FAILURE)
             test.fail(result.getThrowable());
@@ -88,8 +94,8 @@ public class ExtentReport {
         else
             test.pass("Test passed");
 
-      //  extent.flush();
-    }
+        //  extent.flush();
+    }*/
 
     @AfterSuite
     public void tearDown() {
