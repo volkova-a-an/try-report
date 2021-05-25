@@ -10,10 +10,15 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation 'io.testproject:java-sdk:1.2.0-RELEASE'
+    implementation 'org.testng:testng:7.4.0'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
+    testLogging.showStandardStreams = true
+
 }
